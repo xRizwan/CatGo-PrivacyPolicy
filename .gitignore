@@ -1,4 +1,8 @@
 .DS_Store
 Thumbs.db
-.vercel
 node_modules/
+
+# Vercel CLI: link metadata and the local OIDC token it fetches.
+# .env.local holds VERCEL_OIDC_TOKEN - must never be committed.
+.vercel
+.env*
