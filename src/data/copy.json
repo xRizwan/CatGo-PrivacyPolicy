@@ -1,0 +1,255 @@
+{
+  "meta": {
+    "title": "Cat Go! - Help Ginger get the Golden Tuna back",
+    "description": "Cat Go! is a free Android lane battler. Ginger napped on guard duty. The Golden Tuna was stolen. Switch lanes, stack weapons and beat bosses over 60 chapters."
+  },
+  "nav": {
+    "story": "Story",
+    "how": "How it plays",
+    "heroes": "Heroes",
+    "worlds": "Worlds",
+    "faq": "FAQ",
+    "cta": "Get the game"
+  },
+  "hero": {
+    "h1": "Help Ginger get his Golden Tuna back.",
+    "sub": "Ginger had one job: guard the Golden Tuna. He took a nap. The Ogre King stole it. Help Ginger chase him through six worlds, past lots of goblins and at least one very big snowball.",
+    "cta": "Get it on Google Play",
+    "cta2": "Watch him grow",
+    "stats": [
+      {
+        "n": "60",
+        "label": "chapters"
+      },
+      {
+        "n": "6",
+        "label": "worlds"
+      },
+      {
+        "n": "9",
+        "label": "heroes"
+      },
+      {
+        "n": "6",
+        "label": "pets"
+      }
+    ]
+  },
+  "story": {
+    "chip": "Chapter 1: The Great Tuna Heist",
+    "title": "It all started with a nap",
+    "sub": "Every new world opens with a short comic. This is the first one."
+  },
+  "climb": {
+    "chip": "One chapter, start to boss",
+    "title": "From power 1 to 20K",
+    "sub": "Everything Ginger picks up or eats changes his power. He'll need plenty for the boss.",
+    "steps": [
+      {
+        "title": "Sets off",
+        "label": "1",
+        "note": "Ginger leaves home with just 1 power."
+      },
+      {
+        "title": "Dagger card",
+        "label": "14",
+        "note": "His first weapon throws daggers."
+      },
+      {
+        "title": "Goblin camp",
+        "label": "140",
+        "note": "He eats the whole camp and takes their power."
+      },
+      {
+        "title": "Poop card",
+        "label": "70",
+        "bad": true,
+        "note": "Wrong lane: poop halves his power."
+      },
+      {
+        "title": "Skeletons",
+        "label": "300",
+        "note": "Three skeletons, one after another."
+      },
+      {
+        "title": "Pig mount",
+        "label": "3K",
+        "note": "A pig mount multiplies his power."
+      },
+      {
+        "title": "Pet joins",
+        "label": "3.5K",
+        "note": "A lizard tags along and fights too."
+      },
+      {
+        "title": "Brute",
+        "label": "8.5K",
+        "note": "The brute is bigger than him. The daggers fix that."
+      },
+      {
+        "title": "Ogre King",
+        "label": "20.5K",
+        "note": "Boss beaten, next chapter."
+      }
+    ],
+    "label": "Ginger plays a chapter of Whisker Woods on his own: he takes a dagger card, eats a goblin camp, picks up a poop card, eats three skeletons, rides a pig, gets a lizard pet, beats a brute and then the Ogre King."
+  },
+  "how": {
+    "title": "How Ginger fights",
+    "sub": "You only need one thumb.",
+    "steps": [
+      {
+        "title": "You pick the lane",
+        "text": "Tap to switch. That's the only control. Ginger runs and throws on his own."
+      },
+      {
+        "title": "Ginger eats their power",
+        "text": "Knock an enemy's number down to zero. Ginger takes all its power. Bigger number, bigger cat."
+      },
+      {
+        "title": "Every card stacks",
+        "text": "Daggers, crossbow bolts, sword waves, homing orbs, fire. Grab a good card. Leave the poop card."
+      },
+      {
+        "title": "Then the boss",
+        "text": "Every chapter ends with a boss. Halfway there you pick one of three power-ups."
+      }
+    ]
+  },
+  "worlds": {
+    "title": "Where the Tuna went",
+    "sub": "Six worlds, each with its own enemies and pet. Whoever's at the end won't hand things over nicely.",
+    "items": [
+      {
+        "name": "Whisker Woods",
+        "chapters": "Chapters 1-9",
+        "text": "Goblin camps, skeletons and Ogre Keep. The Ogre King has the Tuna. Or he did."
+      },
+      {
+        "name": "Volcano Lands",
+        "chapters": "Chapters 10-19",
+        "text": "\"Tuna? Oh... I traded it to the Dragon Queen.\" So it's off across the lava."
+      },
+      {
+        "name": "Dragon Realm",
+        "chapters": "Chapters 20-30",
+        "text": "The terrible Dragon Queen is a baby who just wanted a friend."
+      },
+      {
+        "name": "Frostpaw Peaks",
+        "chapters": "Chapters 31-40",
+        "text": "The Yeti King keeps the Golden Ice Cream and throws very big snowballs. When a lane glows, move."
+      },
+      {
+        "name": "Desert Dunes",
+        "chapters": "Chapters 41-50",
+        "text": "The Sphinx King guards the Golden Cookie. Answer his riddle or meet his Mummy Golem."
+      },
+      {
+        "name": "Sunken Reef",
+        "chapters": "Chapters 51-60",
+        "text": "The Crab King pinches everything. His Kraken's currents push Ginger out of his lane."
+      }
+    ]
+  },
+  "heroes": {
+    "title": "Pick your cat",
+    "sub": "Ginger isn't the only cat who can make the trip. Play as eight more cats, each with a perk. Four start every run with a weapon."
+  },
+  "weapons": {
+    "title": "The weapons pile up",
+    "sub": "Pick up a dagger, then a crossbow, then a sword. They all keep firing. Each world adds something new: bombs, boomerangs, ice wands, a sandstorm, a trident."
+  },
+  "pets": {
+    "title": "A pet for the road",
+    "sub": "Each world has its own pet card. Grab it and the pet fights beside Ginger. Find three of the same pet and it evolves."
+  },
+  "shots": {
+    "title": "A look at the game",
+    "sub": ""
+  },
+  "style": {
+    "title": "Ginger's wardrobe",
+    "sub": "Hats, capes, wings, weapon skins and trails from the Style shop. Yes, he can throw a fish."
+  },
+  "modes": {
+    "title": "After the story",
+    "items": [
+      {
+        "title": "Endless",
+        "text": "No boss, no finish line. See how big Ginger gets before something bigger shows up."
+      },
+      {
+        "title": "Daily challenge",
+        "text": "One new run every day, the same for everyone. Keep your streak going."
+      },
+      {
+        "title": "Leaderboards",
+        "text": "Sign in to Google Play Games to put your Endless and daily scores on the leaderboards."
+      }
+    ]
+  },
+  "event": {
+    "badge": "Halloween event",
+    "title": "Pumpkins on the road, 24-31 October",
+    "text": "Pumpkin enemies, a Pumpkin King and candy to collect. Ginger gets a witch hat and bat wings."
+  },
+  "what": {
+    "title": "What is Cat Go!?",
+    "body": [
+      "Cat Go! is a mobile game about a cat on a road with two or three lanes. Every enemy has a number. Knock out a smaller one and its number is added to yours. Run into a bigger one and the run ends.",
+      "It's made by XO Productions, a small independent studio. Cat Go! is free on Google Play and plays offline."
+    ]
+  },
+  "faq": {
+    "title": "A few questions",
+    "items": [
+      {
+        "q": "What kind of game is Cat Go!?",
+        "a": "Cat Go! is a lane-running battler. Ginger runs by himself on a road with two or three lanes. You tap to switch lanes. Beat enemies with a smaller power number to take their power. Avoid bigger ones."
+      },
+      {
+        "q": "What is the story of Cat Go!?",
+        "a": "Ginger fell asleep guarding the legendary Golden Tuna, and the Ogre King stole it. Chase him through six worlds to a Dragon Queen, then more Golden Treats guarded by the Yeti King, the Sphinx King and the Crab King."
+      },
+      {
+        "q": "Is Cat Go! free?",
+        "a": "Yes, Cat Go! is free to download and play. Optional ads let you revive or double your coins by watching a video. You can also buy coin packs, premium heroes or a monthly VIP pass."
+      },
+      {
+        "q": "Can I play Cat Go! offline?",
+        "a": "Yes, the whole campaign works offline. Ads, purchases and leaderboards need an internet connection."
+      },
+      {
+        "q": "Is Cat Go! on iPhone?",
+        "a": "No, Cat Go! is only on Android through Google Play for now."
+      },
+      {
+        "q": "How many levels are there?",
+        "a": "There are 60 chapters across six worlds, with a boss at the end of each chapter. Endless mode unlocks after chapter 10. The daily challenge unlocks after chapter 3."
+      },
+      {
+        "q": "How do pets evolve?",
+        "a": "Collect three of the same pet to evolve it into a stronger form. Pick up a pet card in a world and the pet joins your run."
+      },
+      {
+        "q": "Can I turn off ads?",
+        "a": "Yes, the No Ads purchase or VIP pass removes ads between runs. Rewarded videos stay optional: you only see them if you choose to."
+      },
+      {
+        "q": "Who makes Cat Go!?",
+        "a": "XO Productions (XO Labs), a small indie studio, makes it. Email xo.labs.production@gmail.com."
+      }
+    ]
+  },
+  "cta": {
+    "title": "The Tuna won't rescue itself",
+    "text": "Ginger's ready when you are. Cat Go! is free on Google Play.",
+    "button": "Get it on Google Play"
+  },
+  "footer": {
+    "made": "Made by XO Productions",
+    "privacy": "Privacy policy",
+    "contact": "Contact"
+  }
+}

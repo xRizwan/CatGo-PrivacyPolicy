@@ -1,0 +1,369 @@
+---
+// A scripted, self-playing run through Whisker Woods. Each beat lines up with one
+// moment in the strip under it (the page listens for `autorun:step`).
+interface Props {
+  art: Record<string, string>;
+  notes: string[];
+  label: string;
+}
+const { art, notes, label } = Astro.props;
+---
+<div class="run" data-run data-art={JSON.stringify(art)} data-notes={JSON.stringify(notes)} role="img" aria-label={label}>
+  <div class="trees" style={`background-image:url(${art.trees})`}></div>
+  <div class="road" style={`background-image:url(${art.road})`}><span class="divider"></span></div>
+  <div class="hud"><span class="power-pill"><b data-power>1</b></span></div>
+  <div class="cat" data-cat style="top:62%">
+    <img class="pig" src={art.pig} alt="" />
+    <img class="ginger" src={art.hero} alt="" />
+    <img class="pet" src={art.pet} alt="" />
+  </div>
+  <img class="paw" data-paw src={art.paw} alt="" />
+  <div class="layer" data-layer></div>
+  <div class="banner" data-banner></div>
+</div>
+<p class="run-note" data-note aria-live="polite">{notes[0]}</p>
+
+<style>
+  .run {
+    position: relative; aspect-ratio: 16 / 7.4; width: 100%;
+    border: 5px solid var(--ink); border-radius: 28px; overflow: hidden;
+    box-shadow: 0 10px 0 var(--ink); background: #8fd3f4; user-select: none;
+  }
+  @media (max-width: 640px) { .run { aspect-ratio: 4 / 3.2; } }
+  .trees, .road { position: absolute; left: 0; right: 0; background-repeat: repeat-x; animation: scroll 9s linear infinite; }
+  .trees { top: 0; height: 46%; background-size: auto 100%; background-position: 0 bottom; }
+  .road { top: 46%; bottom: 0; background-size: auto 100%; animation-duration: 3.2s; }
+  .run.paused .trees, .run.paused .road { animation-play-state: paused; }
+  .divider { position: absolute; left: 0; right: 0; top: 45%; height: 0; border-top: 5px dashed rgba(255, 255, 255, .65); }
+  @keyframes scroll { from { background-position-x: 0 } to { background-position-x: -1000px } }
+
+  .hud { position: absolute; top: 12px; left: 12px; z-index: 5; }
+  .power-pill {
+    display: inline-block; font: 400 30px/1 var(--display); padding: 6px 16px 8px; border-radius: 16px;
+    border: 4px solid var(--ink); background: var(--green); color: #fff; text-shadow: 0 2px 0 var(--ink); box-shadow: 0 4px 0 var(--ink);
+  }
+  .power-pill::before { content: '\26A1'; margin-right: 6px; }
+  .power-pill.down { background: var(--red); }
+
+  .cat { position: absolute; left: 13%; width: 14%; z-index: 3; transform: translate(-50%, -88%); transition: top .22s cubic-bezier(.3, 1.6, .5, 1); }
+  .ginger { position: relative; width: 100%; animation: run .34s ease-in-out infinite alternate; transform-origin: 50% 100%; z-index: 2; }
+  .pig { position: absolute; left: -4%; bottom: -22%; width: 108%; opacity: 0; transform: scale(.4); transition: opacity .3s, transform .4s cubic-bezier(.3, 1.8, .5, 1); z-index: 1; }
+  .cat.mounted .pig { opacity: 1; transform: none; }
+  .cat.mounted .ginger { margin-bottom: 26%; }
+  .pet { position: absolute; left: -62%; top: -12%; width: 62%; opacity: 0; transform: scale(.3); transition: opacity .3s, transform .4s cubic-bezier(.3, 1.8, .5, 1); animation: float 2.4s ease-in-out infinite; }
+  .cat.pet-on .pet { opacity: 1; transform: none; }
+  .cat.gulp .ginger { animation: gulp .25s ease; }
+  .cat.sad .ginger { animation: sad .5s ease; }
+  @keyframes run { from { transform: translateY(0) rotate(-3deg) } to { transform: translateY(-6%) rotate(3deg) } }
+  @keyframes gulp { 50% { transform: scale(1.18, .86) } }
+  @keyframes sad { 30% { transform: translateY(8%) scale(1.05, .9) rotate(-6deg) } }
+  :global(.layer) :global(.num), .cat :global(.num) {
+    position: absolute; left: 50%; top: -14%; transform: translateX(-50%); z-index: 3;
+    font: 400 clamp(16px, 2.6vw, 28px)/1 var(--display); color: var(--red); white-space: nowrap;
+    -webkit-text-stroke: 5px var(--ink); paint-order: stroke fill;
+  }
+  .cat :global(.num) { color: var(--green); }
+
+  .paw { position: absolute; left: 3%; width: 7%; z-index: 6; opacity: 0; transform: translate(-50%, -50%) rotate(-30deg); pointer-events: none; }
+  .paw.tap { animation: tap .7s ease forwards; }
+  @keyframes tap { 0% { opacity: 0; transform: translate(-30%, -30%) rotate(-30deg) } 30% { opacity: 1; transform: translate(-50%, -50%) rotate(-30deg) scale(1.1) } 50% { transform: translate(-50%, -50%) rotate(-30deg) scale(.9) } 100% { opacity: 0; transform: translate(-50%, -50%) rotate(-30deg) } }
+
+  .layer { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
+  .layer :global(.ent) { position: absolute; transform: translate(-50%, -88%); }
+  .layer :global(.enemy) { width: 12%; }
+  .layer :global(.enemy.big) { width: 15%; }
+  .layer :global(.enemy img), .layer :global(.boss img) { width: 100%; animation: wiggle .5s ease-in-out infinite; }
+  .layer :global(.boss) { width: 24%; transform: translate(-50%, -78%); }
+  .layer :global(.boss .num) { font-size: clamp(22px, 3.6vw, 40px); top: -6%; }
+  .layer :global(.num.strong) { animation: throb .5s ease-in-out infinite alternate; }
+  @keyframes throb { to { transform: translateX(-50%) scale(1.2); } }
+  .layer :global(.ent.hit img) { animation: hitflash .16s ease; }
+  @keyframes hitflash { 0% { filter: brightness(2.6) saturate(0); transform: translateX(8%) rotate(6deg) } 100% { filter: none; transform: none } }
+  .layer :global(.ent.poof) { animation: poof .35s ease forwards; }
+  @keyframes poof { to { transform: translate(-50%, -88%) scale(1.5); opacity: 0; filter: brightness(3) } }
+
+  .layer :global(.card) {
+    width: 8.5%; aspect-ratio: .86; display: grid; place-items: center; transform: translate(-50%, -96%);
+    background: linear-gradient(#ffb34d, #ff8a3d); border: 4px solid var(--ink); border-radius: 14px; box-shadow: 0 5px 0 var(--ink);
+  }
+  .layer :global(.card.bad) { background: linear-gradient(#c9a27a, #9b7552); }
+  .layer :global(.card img) { width: 74%; }
+  .layer :global(.card .op) {
+    position: absolute; top: -34%; left: 50%; transform: translateX(-50%); font: 400 clamp(16px, 2.4vw, 26px)/1 var(--display);
+    color: #fff; -webkit-text-stroke: 5px var(--ink); paint-order: stroke fill; white-space: nowrap;
+  }
+  .layer :global(.card.bad .op) { color: var(--red); }
+  .layer :global(.card.taken) { animation: grab .35s ease forwards; }
+  @keyframes grab { to { transform: translate(-50%, -96%) scale(.2) translateY(-60%); opacity: 0 } }
+
+  .layer :global(.shot) { position: absolute; width: 4%; transform: translate(-50%, -50%) rotate(45deg); filter: drop-shadow(0 0 6px #fff); }
+  .layer :global(.shot.fire) { width: 3%; height: 3%; border-radius: 50%; background: radial-gradient(#fff6b0, #ff9a3d); transform: translate(-50%, -50%); box-shadow: 0 0 10px #ff9a3d; }
+  .layer :global(.pop), .layer :global(.dmg) { position: absolute; white-space: nowrap; paint-order: stroke fill; }
+  .layer :global(.pop) {
+    transform: translate(-50%, -100%); font: 400 clamp(18px, 3vw, 32px)/1 var(--display);
+    color: var(--green); -webkit-text-stroke: 5px var(--ink); animation: rise .8s ease-out forwards;
+  }
+  .layer :global(.pop.bad) { color: var(--red); }
+  @keyframes rise { to { transform: translate(-50%, -260%); opacity: 0 } }
+  .layer :global(.dmg) {
+    transform: translate(-50%, -100%); font: 400 clamp(13px, 2vw, 22px)/1 var(--display);
+    color: var(--red); -webkit-text-stroke: 4px #fff; animation: dmg .7s ease-out forwards;
+  }
+  @keyframes dmg { 0% { transform: translate(-50%, -60%) scale(1.4) } 100% { transform: translate(-50%, -220%) scale(.9); opacity: 0 } }
+  .layer :global(.burst) {
+    position: absolute; width: 11%; aspect-ratio: 1; transform: translate(-50%, -110%); border-radius: 50%;
+    background: radial-gradient(circle, #fff 0 20%, #ffd23c 21% 45%, #ff6a3d 46% 62%, transparent 63%); animation: burst .4s ease-out forwards;
+  }
+  @keyframes burst { from { transform: translate(-50%, -110%) scale(.2) } to { transform: translate(-50%, -110%) scale(1.6); opacity: 0 } }
+
+  .banner {
+    position: absolute; left: 50%; top: 40%; z-index: 7; transform: translate(-50%, -50%) scale(0); opacity: 0;
+    font: 400 clamp(30px, 6vw, 64px)/1 var(--display); color: var(--yellow); -webkit-text-stroke: 8px var(--ink); paint-order: stroke fill; white-space: nowrap;
+  }
+  .banner.show { animation: banner 2.2s cubic-bezier(.3, 1.6, .5, 1) forwards; }
+  @keyframes banner { 15% { transform: translate(-50%, -50%) scale(1.1) rotate(-4deg); opacity: 1 } 25%, 80% { transform: translate(-50%, -50%) scale(1) rotate(-4deg); opacity: 1 } 100% { transform: translate(-50%, -50%) scale(1); opacity: 0 } }
+
+  .run-note {
+    margin: 22px auto 0; width: fit-content; max-width: 100%; text-align: center; font-size: 19px;
+    background: #fff; border: 4px solid var(--ink); border-radius: 18px; padding: 10px 20px; box-shadow: 0 5px 0 var(--ink);
+  }
+</style>
+
+<script>
+  type Kind = 'enemy' | 'card' | 'boss';
+  type Ent = {
+    kind: Kind; lane: number; at: number; p: number; art: string; big?: boolean;
+    op?: '+' | 'x' | '/'; bad?: boolean; moment?: number; pet?: boolean; mount?: boolean;
+  };
+  type Live = Ent & { el: HTMLElement; num?: HTMLElement; hp: number; done: boolean };
+
+  const LANES = [0.62, 0.885];
+  const BOSS_Y = 0.8;
+  const CAT_X = 0.13;
+  const SPEED = 0.3; // stage widths per second
+  const RANGE = 0.8;
+
+  function fmt(n: number) {
+    if (n >= 1e6) return (n / 1e6).toFixed(n >= 1e7 ? 0 : 1).replace(/\.0$/, '') + 'M';
+    if (n >= 1e3) return (n / 1e3).toFixed(n >= 1e4 ? 0 : 1).replace(/\.0$/, '') + 'K';
+    return String(Math.round(n));
+  }
+
+  for (const root of document.querySelectorAll<HTMLElement>('[data-run]')) {
+    const A: Record<string, string> = JSON.parse(root.dataset.art || '{}');
+    const notes: string[] = JSON.parse(root.dataset.notes || '[]');
+    const layer = root.querySelector<HTMLElement>('[data-layer]')!;
+    const cat = root.querySelector<HTMLElement>('[data-cat]')!;
+    const paw = root.querySelector<HTMLElement>('[data-paw]')!;
+    const banner = root.querySelector<HTMLElement>('[data-banner]')!;
+    const powerEl = root.querySelector<HTMLElement>('[data-power]')!;
+    const noteEl = root.parentElement!.querySelector<HTMLElement>('[data-note]')!;
+
+    // The run, in "distance" units: an entity reaches Ginger when the run has travelled `at`.
+    // moment = which strip card lights up when this entity is dealt with.
+    const script: Ent[] = [
+      { kind: 'card', lane: 0, at: 1.2, p: 13, op: '+', art: A.cardDagger, moment: 1 },
+      { kind: 'card', lane: 1, at: 1.2, p: 2, op: '/', art: A.cardPoop, bad: true },
+      { kind: 'enemy', lane: 1, at: 2.0, p: 10, art: A.goblin },
+      { kind: 'enemy', lane: 1, at: 2.22, p: 20, art: A.goblin },
+      { kind: 'enemy', lane: 1, at: 2.44, p: 36, art: A.goblin },
+      { kind: 'enemy', lane: 1, at: 2.66, p: 60, art: A.goblin, moment: 2 },
+      { kind: 'enemy', lane: 0, at: 2.3, p: 500, art: A.brute, big: true },
+      { kind: 'card', lane: 1, at: 3.4, p: 2, op: '/', art: A.cardPoop, bad: true, moment: 3 },
+      { kind: 'card', lane: 0, at: 3.4, p: 40, op: '+', art: A.cardCrossbow },
+      { kind: 'enemy', lane: 0, at: 4.15, p: 30, art: A.skeleton },
+      { kind: 'enemy', lane: 0, at: 4.4, p: 60, art: A.skeleton },
+      { kind: 'enemy', lane: 0, at: 4.65, p: 140, art: A.skeleton, moment: 4 },
+      { kind: 'enemy', lane: 1, at: 4.4, p: 900, art: A.reaper, big: true },
+      { kind: 'card', lane: 1, at: 5.4, p: 10, op: 'x', art: A.cardPig, mount: true, moment: 5 },
+      { kind: 'card', lane: 0, at: 5.4, p: 2, op: '/', art: A.cardPoop, bad: true },
+      { kind: 'card', lane: 1, at: 6.2, p: 500, op: '+', art: A.cardLizard, pet: true, moment: 6 },
+      { kind: 'card', lane: 0, at: 6.2, p: 2, op: '/', art: A.cardPoop, bad: true },
+      { kind: 'enemy', lane: 0, at: 7.2, p: 5000, art: A.brute, big: true, moment: 7 },
+      { kind: 'enemy', lane: 1, at: 7.2, p: 40000, art: A.reaper, big: true },
+      { kind: 'boss', lane: -1, at: 8.6, p: 12000, art: A.boss, moment: 8 },
+    ];
+    // Where Ginger moves, by distance travelled. Lane 1 at 3.4 is the poop card he "misses".
+    const moves: [number, number][] = [[1.55, 1], [3.62, 0], [4.95, 1], [6.55, 0]];
+
+    let d = 0, last = 0, power = 1, lane = 0, spawned = 0, moveIdx = 0, untilShot = 0, endAt = 0;
+    let live: Live[] = [];
+    let shots: { el: HTMLElement; step: (dt: number) => boolean }[] = [];
+    let visible = false, looping = false, petOn = false, armed = false;
+
+    const place = (el: HTMLElement, x: number, y: number) => { el.style.left = x * 100 + '%'; el.style.top = y * 100 + '%'; };
+    const catNum = document.createElement('span');
+    catNum.className = 'num';
+    cat.appendChild(catNum);
+    const setPower = (p: number) => {
+      power = Math.round(p);
+      powerEl.textContent = fmt(power); catNum.textContent = fmt(power);
+    };
+    const setLane = (l: number) => {
+      lane = l; cat.style.top = LANES[l] * 100 + '%';
+      paw.style.top = (LANES[l] - 0.12) * 100 + '%';
+      paw.classList.remove('tap'); void paw.offsetWidth; paw.classList.add('tap');
+    };
+    const moment = (i: number) => {
+      noteEl.textContent = notes[i] || '';
+      root.dispatchEvent(new CustomEvent('autorun:step', { bubbles: true, detail: i }));
+    };
+    const float = (cls: string, str: string, x: number, y: number, ms: number) => {
+      const s = document.createElement('span');
+      s.className = cls; s.textContent = str; place(s, x, y);
+      layer.appendChild(s); setTimeout(() => s.remove(), ms);
+    };
+    const gulp = (sad = false) => {
+      const c = sad ? 'sad' : 'gulp';
+      cat.classList.remove('gulp', 'sad'); void cat.offsetWidth; cat.classList.add(c);
+    };
+
+    function reset() {
+      live.forEach((e) => e.el.remove());
+      layer.innerHTML = '';
+      live = []; d = 0; spawned = 0; moveIdx = 0; untilShot = 0; endAt = 0; petOn = false; armed = false;
+      shots.forEach((x) => x.el.remove()); shots = [];
+      cat.classList.remove('mounted', 'pet-on');
+      lane = 0; cat.style.top = LANES[0] * 100 + '%';
+      setPower(1); moment(0);
+    }
+
+    function spawn(e: Ent) {
+      const el = document.createElement('div');
+      const img = document.createElement('img');
+      img.src = e.art; img.alt = '';
+      el.appendChild(img);
+      const l: Live = { ...e, el, hp: e.p, done: false };
+      if (e.kind === 'card') {
+        el.className = 'ent card' + (e.bad ? ' bad' : '');
+        const op = document.createElement('span');
+        op.className = 'op';
+        op.textContent = (e.op === 'x' ? '×' : e.op === '/' ? '÷' : '+') + fmt(e.p);
+        el.appendChild(op);
+      } else {
+        el.className = 'ent ' + e.kind + (e.big ? ' big' : '');
+        img.style.animationDelay = (-Math.random()).toFixed(2) + 's';
+        const num = document.createElement('span');
+        num.className = 'num'; num.textContent = fmt(e.p);
+        el.appendChild(num); l.num = num;
+      }
+      layer.appendChild(el);
+      live.push(l);
+    }
+
+    function eat(e: Live) {
+      e.done = true;
+      e.el.classList.add('poof');
+      setTimeout(() => e.el.remove(), 360);
+      const x = CAT_X + (e.at - d);
+      const b = document.createElement('span');
+      b.className = 'burst';
+      place(b, x, e.kind === 'boss' ? BOSS_Y : LANES[e.lane]);
+      layer.appendChild(b); setTimeout(() => b.remove(), 420);
+      float('pop', '+' + fmt(e.p), CAT_X, LANES[lane] - 0.22, 800);
+      setPower(power + e.p);
+      gulp();
+      if (e.kind === 'boss') {
+        banner.textContent = 'BOSS DOWN!';
+        banner.classList.remove('show'); void banner.offsetWidth; banner.classList.add('show');
+        endAt = d + 1.2;
+      }
+      if (e.moment) moment(e.moment);
+    }
+
+    function take(e: Live) {
+      e.done = true;
+      e.el.classList.add('taken');
+      setTimeout(() => e.el.remove(), 360);
+      const next = e.op === '+' ? power + e.p : e.op === 'x' ? power * e.p : power / e.p;
+      float('pop' + (e.bad ? ' bad' : ''), e.el.querySelector('.op')!.textContent!, CAT_X, LANES[lane] - 0.22, 800);
+      setPower(next);
+      gulp(e.bad);
+      powerEl.parentElement!.classList.toggle('down', !!e.bad);
+      setTimeout(() => powerEl.parentElement!.classList.remove('down'), 700);
+      if (e.op === '+' && !e.pet) armed = true;
+      if (e.mount) cat.classList.add('mounted');
+      if (e.pet) { cat.classList.add('pet-on'); petOn = true; }
+      if (e.moment) moment(e.moment);
+    }
+
+    function fire(from: number, y: number, fireball: boolean) {
+      const el = document.createElement(fireball ? 'span' : 'img');
+      el.className = 'shot' + (fireball ? ' fire' : '');
+      if (!fireball) (el as HTMLImageElement).src = A.shot;
+      place(el, from, y);
+      layer.appendChild(el);
+      const s = { el, x: from, lane };
+      const step = (dt: number) => {
+        s.x += dt * 1.5;
+        el.style.left = s.x * 100 + '%';
+        const t = live.find((e) => !e.done && e.kind !== 'card' && (e.lane === s.lane || e.lane === -1) && CAT_X + (e.at - d) < RANGE && s.x >= CAT_X + (e.at - d) - 0.03);
+        if (t) { hit(t); return false; }
+        return s.x < 1.05;
+      };
+      shots.push({ el, step });
+    }
+
+    function hit(e: Live) {
+      const dmg = Math.max(1, Math.ceil(power * 0.28));
+      e.hp = Math.max(0, e.hp - dmg);
+      const x = CAT_X + (e.at - d);
+      float('dmg', '-' + fmt(dmg), x + (Math.random() - 0.5) * 0.05, (e.kind === 'boss' ? BOSS_Y - 0.3 : LANES[e.lane] - 0.2), 700);
+      e.el.classList.remove('hit'); void e.el.offsetWidth; e.el.classList.add('hit');
+      e.num!.textContent = fmt(e.hp);
+      if (e.hp <= 0) eat(e);
+    }
+
+    function tick(now: number) {
+      if (!visible) { looping = false; root.classList.add('paused'); return; }
+      // Fixed small steps, so a slow or throttled frame rate never turns into slow motion.
+      let left = Math.min(0.5, (now - last) / 1000 || 0);
+      last = now;
+      while (left > 0) { const dt = Math.min(1 / 60, left); left -= dt; step(dt); }
+      requestAnimationFrame(tick);
+    }
+
+    function step(dt: number) {
+      d += SPEED * dt;
+
+      while (spawned < script.length && script[spawned].at - d < 1.05) spawn(script[spawned++]);
+      while (moveIdx < moves.length && d >= moves[moveIdx][0]) setLane(moves[moveIdx++][1]);
+
+      untilShot -= dt;
+      if (armed && untilShot <= 0) {
+        untilShot = 0.28;
+        fire(CAT_X + 0.05, LANES[lane] - 0.1, false);
+        if (petOn) setTimeout(() => fire(CAT_X - 0.02, LANES[lane] - 0.2, true), 140);
+      }
+      shots = shots.filter((s) => { const keep = s.step(dt); if (!keep) s.el.remove(); return keep; });
+
+      for (const e of live) {
+        if (e.done) continue;
+        const x = CAT_X + (e.at - d);
+        place(e.el, x, e.kind === 'boss' ? BOSS_Y : LANES[e.lane]);
+        e.num?.classList.toggle('strong', e.hp > power);
+        const mine = e.lane === lane || e.lane === -1;
+        if (x <= CAT_X + 0.07 && x > CAT_X - 0.04 && mine) {
+          if (e.kind === 'card') take(e);
+          else eat(e); // the script only ever sends Ginger into fights he wins
+        } else if (x < -0.2) {
+          e.done = true; e.el.remove();
+        }
+      }
+      live = live.filter((e) => !e.done || e.el.isConnected);
+
+      if (endAt && d >= endAt + 0.5) reset();
+    }
+
+    reset();
+    new IntersectionObserver(([e]) => {
+      visible = e.isIntersecting;
+      if (visible && !looping) {
+        looping = true; root.classList.remove('paused');
+        last = performance.now(); requestAnimationFrame(tick);
+      }
+    }, { threshold: 0.25 }).observe(root);
+
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) root.classList.add('paused');
+  }
+</script>

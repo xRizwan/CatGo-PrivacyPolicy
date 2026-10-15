@@ -1,0 +1,170 @@
+---
+import copy from '../data/copy.json';
+
+interface Props {
+  jsonLd?: object[];
+  title?: string;
+  description?: string;
+}
+const { jsonLd = [], title = copy.meta.title, description = copy.meta.description } = Astro.props;
+
+const site = Astro.site!.toString().replace(/\/$/, '');
+const path = Astro.url.pathname.replace(/\.html$/, '').replace(/\/$/, '');
+const canonical = site + (path === '' || path === '/index' ? '/' : path);
+const ogImage = `${site}/og-image.jpg`;
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonical} />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta name="theme-color" content="#ffc93c" />
+  <meta name="color-scheme" content="light" />
+
+  <link rel="icon" type="image/png" href="/icon.png" />
+  <link rel="apple-touch-icon" href="/icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Cat Go!" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:image" content={ogImage} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Cat Go! - an orange cat with a green scarf next to a boss fight" />
+  <meta property="og:locale" content="en_US" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={ogImage} />
+  <meta name="google-play-app" content="app-id=com.xoproductions.catgo" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:wght@600;700;800;900&display=swap" />
+
+  {jsonLd.map((d) => <script type="application/ld+json" set:html={JSON.stringify(d)} />)}
+</head>
+<body>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="paw" viewBox="0 0 64 64">
+      <ellipse cx="32" cy="42" rx="15" ry="13" />
+      <ellipse cx="14" cy="26" rx="6.5" ry="8.5" transform="rotate(-18 14 26)" />
+      <ellipse cx="26" cy="15" rx="6.5" ry="9" />
+      <ellipse cx="39" cy="15" rx="6.5" ry="9" />
+      <ellipse cx="51" cy="26" rx="6.5" ry="8.5" transform="rotate(18 51 26)" />
+    </symbol>
+    <symbol id="sparkle" viewBox="0 0 40 40">
+      <path d="M20 0c2 11 9 18 20 20-11 2-18 9-20 20-2-11-9-18-20-20C11 18 18 11 20 0z" />
+    </symbol>
+    <symbol id="cloud" viewBox="0 0 200 90">
+      <path d="M40 85h120a30 30 0 0 0 6-59 40 40 0 0 0-74-12 32 32 0 0 0-48 22A30 30 0 0 0 40 85z" fill="#fff" stroke="#3d2614" stroke-width="5" />
+    </symbol>
+  </svg>
+  <slot />
+</body>
+</html>
+
+<style is:global>
+  :root {
+    --ink: #3d2614;
+    --ink-soft: #6e4f36;
+    --cream: #fff7e6;
+    --cream-2: #ffefd1;
+    --sand: #f2dfae;
+    --yellow: #ffc93c;
+    --yellow-deep: #f0a019;
+    --orange: #ff8a3d;
+    --green: #3fbf3f;
+    --green-deep: #24952b;
+    --red: #e8413a;
+    --purple: #8b6ce8;
+    --purple-deep: #6247c4;
+    --sky: #7fd0f5;
+    --sky-2: #c6ecff;
+    --pink: #ff9fb6;
+    --outline: 4px solid var(--ink);
+    --shadow-chunky: 0 6px 0 var(--ink);
+    --radius: 22px;
+    --display: 'Lilita One', 'Nunito', system-ui, sans-serif;
+    --body: 'Nunito', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+  body {
+    margin: 0;
+    background: var(--cream);
+    color: var(--ink);
+    font: 600 17px/1.6 var(--body);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  img { max-width: 100%; height: auto; display: block; }
+  a { color: inherit; }
+  h1, h2, h3 { font-family: var(--display); font-weight: 400; line-height: 1.08; margin: 0; letter-spacing: .01em; }
+  h2 { font-size: clamp(34px, 5vw, 54px); }
+  h3 { font-size: 24px; }
+  p { margin: 0; }
+  .wrap { width: min(1180px, 100% - 32px); margin-inline: auto; }
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+  .section { padding: 96px 0; position: relative; }
+  .section-head { text-align: center; max-width: 680px; margin: 0 auto 48px; display: grid; gap: 14px; justify-items: center; }
+  .section-head p { color: var(--ink-soft); font-size: 19px; }
+  .chip {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: #fff; border: 3px solid var(--ink); border-radius: 999px;
+    padding: 4px 14px; font-weight: 900; font-size: 14px; text-transform: uppercase; letter-spacing: .06em;
+    box-shadow: 0 3px 0 var(--ink);
+  }
+
+  /* Chunky game buttons */
+  .btn {
+    --bg: var(--yellow); --bg-deep: var(--yellow-deep);
+    display: inline-flex; align-items: center; gap: 12px;
+    padding: 14px 26px 16px; border-radius: 18px;
+    background: linear-gradient(var(--bg), var(--bg) 60%, var(--bg-deep));
+    border: var(--outline); box-shadow: var(--shadow-chunky);
+    font: 400 22px/1 var(--display); color: var(--ink); text-decoration: none; letter-spacing: .02em;
+    transition: transform .12s ease, box-shadow .12s ease; cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .btn:hover { transform: translateY(-3px) rotate(-1deg); box-shadow: 0 9px 0 var(--ink); }
+  .btn:active { transform: translateY(4px); box-shadow: 0 2px 0 var(--ink); }
+  .btn.purple { --bg: var(--purple); --bg-deep: var(--purple-deep); color: #fff; text-shadow: 0 2px 0 rgba(0,0,0,.25); }
+  .btn.green { --bg: var(--green); --bg-deep: var(--green-deep); color: #fff; text-shadow: 0 2px 0 rgba(0,0,0,.25); }
+  .btn svg { width: 26px; height: 26px; flex: none; }
+  .btn small { display: block; font: 800 11px/1 var(--body); letter-spacing: .08em; text-transform: uppercase; opacity: .8; margin-bottom: 3px; }
+
+  .reveal { opacity: 0; transform: translateY(30px) scale(.98); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.9,.3,1.3); }
+  .reveal.in { opacity: 1; transform: none; }
+
+  @keyframes bob { 0%, 100% { transform: translateY(0) } 50% { transform: translateY(-12px) } }
+  @keyframes wiggle { 0%, 100% { transform: rotate(-4deg) } 50% { transform: rotate(4deg) } }
+  @keyframes squish { 0%, 100% { transform: scale(1, 1) } 50% { transform: scale(1.04, .96) } }
+  @keyframes float { 0%, 100% { transform: translate(0, 0) rotate(-6deg) } 50% { transform: translate(6px, -16px) rotate(6deg) } }
+  @keyframes twinkle { 0%, 100% { transform: scale(.4) rotate(0); opacity: 0 } 50% { transform: scale(1) rotate(90deg); opacity: 1 } }
+  @keyframes drift { from { transform: translateX(-30vw) } to { transform: translateX(130vw) } }
+  @keyframes marquee { from { transform: translateX(0) } to { transform: translateX(-50%) } }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .reveal { opacity: 1; transform: none; }
+    html { scroll-behavior: auto; }
+  }
+  :focus-visible { outline: 4px dashed var(--purple); outline-offset: 4px; border-radius: 6px; }
+</style>
+
+<script>
+  const els = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    for (const e of entries) if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  }, { rootMargin: '0px 0px -8% 0px' });
+  els.forEach((el) => io.observe(el));
+</script>

@@ -1,0 +1,2 @@
+// Google Play logo for the store buttons.
+export const PLAY_ICON = `<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#00d26a" d="M3.6 1.8 13.4 12 3.6 22.2c-.4-.2-.6-.6-.6-1.1V2.9c0-.5.2-.9.6-1.1z"/><path fill="#ffce00" d="m16.9 8.6 3.4 1.9c1.1.6 1.1 2.4 0 3l-3.4 1.9L13.4 12z"/><path fill="#ff3a44" d="M3.6 22.2 13.4 12l3.5 3.4L5.3 22c-.6.3-1.2.4-1.7.2z"/><path fill="#00a0ff" d="M3.6 1.8c.5-.2 1.1-.1 1.7.2l11.6 6.6-3.5 3.4z"/></svg>`;

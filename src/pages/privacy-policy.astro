@@ -1,0 +1,187 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '../layouts/Layout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import ginger from '../assets/ui/guide_paw.png';
+import tuna from '../assets/ui/golden_tuna.png';
+
+// The policy text is the one registered with Google Play. Edit it here, keep it in step with
+// the Data safety form, and bump the "Last updated" date.
+---
+<Layout
+  title="Privacy Policy - Cat Go!"
+  description="What the Cat Go! mobile game collects and why: local game progress, optional Google Play Games leaderboards, Google AdMob ads and Google Play purchases via RevenueCat."
+>
+  <SiteHeader />
+  <main class="policy-page">
+    <div class="wrap">
+      <header class="policy-head">
+        <Image class="ph-tuna" src={tuna} alt="" width={180} />
+        <span class="chip">Legal stuff</span>
+        <h1>Privacy Policy</h1>
+        <p class="sub">XO Productions (XO Labs) · Last updated 12 October 2026</p>
+        <Image class="ph-paw" src={ginger} alt="" width={120} />
+      </header>
+      <article class="policy">
+        <p>This policy explains what information the mobile game <strong>Cat Go!</strong>
+        (package <code>com.xoproductions.catgo</code>, “the Game”), published by <strong>XO Labs</strong>
+        (“we”, “us”), collects and how it is used. It applies only to Cat Go!. Our other apps have
+        their own policies.</p>
+
+        <h2>The short version</h2>
+        <ul>
+          <li>You never need an account to play. Signing in to Google Play Games is optional and only
+              used for the leaderboards.</li>
+          <li>Your game progress is stored <strong>on your device</strong>, not on our servers.</li>
+          <li>The Game shows ads from Google AdMob, which uses your device's advertising ID. In the
+              EEA and UK you are asked for consent first.</li>
+          <li>If you make a purchase, Google Play processes it and our partner tells us what you own.
+              We never see or store your card details.</li>
+          <li>We do not sell your personal information.</li>
+        </ul>
+
+        <h2>Information collected</h2>
+
+        <h3>1. Stored on your device only</h3>
+        <p>Game progress — coins, chapters and stars, heroes, upgrades, your best endless runs, your
+        daily-challenge streak, settings, and which purchases you own — is written to your device's
+        local storage. It is not transmitted to us. Uninstalling the Game deletes it.</p>
+
+        <h3>2. Leaderboards (Google Play Games, optional)</h3>
+        <p>The endless mode and the daily challenge have leaderboards run by <strong>Google Play Games
+        Services</strong>. If you are signed in to Play Games, your score is sent to Google with your
+        Play Games player ID. Your Play Games gamer name, avatar and scores are shown to other players on
+        the leaderboards. You can play without signing in; your scores are then not posted. Your Play
+        Games profile and its visibility are controlled in the Google Play Games app.</p>
+
+        <h3>3. Purchases</h3>
+        <p>In-app purchases and the VIP subscription are processed by <strong>Google Play
+        Billing</strong>. We never receive or store your payment card, bank details or billing
+        address. Subscriptions are managed and cancelled in Google Play.</p>
+        <p>We use <strong>RevenueCat</strong> to manage purchases and to remember what you are entitled
+        to across reinstalls and devices. When you make or restore a purchase, RevenueCat receives a
+        randomly generated app user identifier, the purchase receipt issued by the store, and basic
+        device and country information. This identifier is not linked to your name or email address.</p>
+
+        <table>
+          <tr><th>Partner</th><th>Purpose</th><th>Policy</th></tr>
+          <tr>
+            <td>Google Play Billing</td>
+            <td>Processing in-app purchases</td>
+            <td><a href="https://policies.google.com/privacy">policies.google.com/privacy</a></td>
+          </tr>
+          <tr>
+            <td>RevenueCat, Inc.</td>
+            <td>Purchase validation and entitlement management</td>
+            <td><a href="https://www.revenuecat.com/privacy">revenuecat.com/privacy</a></td>
+          </tr>
+        </table>
+
+        <h3>4. Advertising</h3>
+        <p>The Game shows advertisements through <strong>Google AdMob</strong>: optional rewarded
+        videos that you choose to watch for an in-game reward (a revive, double coins, free coins, an
+        extra daily-challenge try), and occasional full-screen ads between runs. To select, measure and
+        protect advertising (including fraud prevention), Google may collect your device's advertising
+        ID and other device identifiers, approximate location derived from your IP address, how you
+        interact with ads and the Game, and crash logs and diagnostics.</p>
+        <p>In the EEA, the UK and Switzerland the Game asks for your consent through Google's consent
+        form before personalised ads are shown. Elsewhere, you can limit ad personalisation at any time
+        in <em>Settings → Privacy → Ads</em> on your Android device, where you can also delete the
+        advertising ID.</p>
+        <div class="note">
+          <strong>No Ads</strong> (a purchase) and the <strong>VIP pass</strong> stop the full-screen ads.
+          Rewarded videos stay available if you choose to watch them.
+        </div>
+
+        <table>
+          <tr><th>Partner</th><th>Purpose</th><th>Policy</th></tr>
+          <tr>
+            <td>Google AdMob</td>
+            <td>Advertising, measurement, consent (EEA/UK)</td>
+            <td><a href="https://policies.google.com/technologies/ads">policies.google.com/technologies/ads</a></td>
+          </tr>
+          <tr>
+            <td>Google Play Games Services</td>
+            <td>Optional sign-in and leaderboards</td>
+            <td><a href="https://policies.google.com/privacy">policies.google.com/privacy</a></td>
+          </tr>
+        </table>
+
+        <h2>Children</h2>
+        <p>The Game is intended for users aged 18 and over and is not directed to children. We do not
+        knowingly collect personal information from children. If you believe a child has provided us
+        with personal information, contact us at the address below and we will delete it.</p>
+
+        <h2>Your rights</h2>
+        <p>Because the Game does not collect information that identifies you personally, we usually
+        cannot locate records relating to a specific individual. You can still:</p>
+        <ul>
+          <li><strong>Delete your data</strong> — uninstalling the Game removes all locally stored progress.</li>
+          <li><strong>Reset advertising identifiers</strong> — via your Android privacy settings.</li>
+          <li><strong>Remove leaderboard scores</strong> — sign out of Play Games for the Game, or manage
+              or delete your Play Games profile in the Google Play Games app.</li>
+          <li><strong>Request deletion of purchase records</strong> — contact us with your order number
+              from Google Play and we will ask our payment partner to delete the associated records,
+              subject to the retention we are required to keep for tax and accounting purposes.</li>
+        </ul>
+        <p>Depending on where you live, you may have additional rights under the GDPR (EEA/UK) or the
+        CCPA (California), including rights of access, correction and deletion. Contact us to exercise
+        them.</p>
+
+        <h2>Data retention</h2>
+        <p>Purchase and entitlement records are retained by our payment partners for as long as needed
+        to honour your purchase and to meet legal, tax and accounting obligations. Leaderboard scores
+        are kept by Google Play Games under Google's policies. Advertising data is retained by Google
+        under its policies. Local game progress is retained on your device until you delete it.</p>
+
+        <h2>Security</h2>
+        <p>Data transmitted between the Game and our partners is encrypted in transit. No method of
+        transmission or storage is completely secure, and we cannot guarantee absolute security.</p>
+
+        <h2>Changes</h2>
+        <p>We may update this policy as the Game changes — for example, when new partners or
+        features are introduced. Material changes will be reflected in the “last updated” date above,
+        and the current version will always be available at this address.</p>
+
+        <h2>Contact</h2>
+        <p>Questions about this policy or your data:<br>
+        <a href="mailto:xo.labs.production@gmail.com">xo.labs.production@gmail.com</a></p>
+      </article>
+    </div>
+  </main>
+  <SiteFooter />
+</Layout>
+
+<style>
+  .policy-page { background: repeating-linear-gradient(45deg, var(--cream-2) 0 26px, var(--cream) 26px 52px); padding: 56px 0 96px; }
+  .policy-head { position: relative; max-width: 820px; margin: 0 auto 34px; text-align: center; display: grid; gap: 12px; justify-items: center; }
+  .policy-head h1 { font-size: clamp(42px, 7vw, 72px); color: #fff; -webkit-text-stroke: 8px var(--ink); paint-order: stroke fill; text-shadow: 0 6px 0 var(--ink); }
+  .policy-head .sub { color: var(--ink-soft); font-weight: 700; }
+  .ph-tuna { position: absolute; left: 0; top: 8px; width: 130px; transform: rotate(-12deg); animation: wiggle 3s ease-in-out infinite; }
+  .ph-paw { position: absolute; right: 10px; top: 30px; width: 86px; animation: bob 2.4s ease-in-out infinite; }
+  @media (max-width: 760px) { .ph-tuna, .ph-paw { display: none; } }
+
+  .policy {
+    max-width: 820px; margin: 0 auto; background: #fff; border: 5px solid var(--ink); border-radius: 30px;
+    box-shadow: 0 10px 0 var(--ink); padding: clamp(24px, 5vw, 52px); font-size: 17px; line-height: 1.7;
+  }
+  .policy :global(h2) { font-size: 30px; margin: 40px 0 12px; display: flex; align-items: center; gap: 10px; }
+  .policy :global(h2)::before { content: ''; width: 26px; height: 26px; flex: none; background: var(--yellow); border: 3px solid var(--ink); border-radius: 50%; box-shadow: 0 3px 0 var(--ink); }
+  .policy > :global(h2:first-of-type) { margin-top: 28px; }
+  .policy :global(h3) { font: 900 19px/1.3 var(--body); margin: 26px 0 8px; }
+  .policy :global(p), .policy :global(li) { color: #4a3424; }
+  .policy :global(p) { margin: 0 0 12px; }
+  .policy :global(ul) { padding-left: 0; list-style: none; margin: 10px 0 16px; display: grid; gap: 8px; }
+  .policy :global(li) { position: relative; padding-left: 30px; }
+  .policy :global(li)::before { content: ''; position: absolute; left: 0; top: .35em; width: 18px; height: 18px; background: var(--orange); -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cellipse cx='32' cy='42' rx='15' ry='13'/%3E%3Cellipse cx='14' cy='26' rx='6.5' ry='8.5'/%3E%3Cellipse cx='26' cy='15' rx='6.5' ry='9'/%3E%3Cellipse cx='39' cy='15' rx='6.5' ry='9'/%3E%3Cellipse cx='51' cy='26' rx='6.5' ry='8.5'/%3E%3C/svg%3E") center / contain no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cellipse cx='32' cy='42' rx='15' ry='13'/%3E%3Cellipse cx='14' cy='26' rx='6.5' ry='8.5'/%3E%3Cellipse cx='26' cy='15' rx='6.5' ry='9'/%3E%3Cellipse cx='39' cy='15' rx='6.5' ry='9'/%3E%3Cellipse cx='51' cy='26' rx='6.5' ry='8.5'/%3E%3C/svg%3E") center / contain no-repeat; }
+  .policy :global(a) { color: var(--purple-deep); font-weight: 800; }
+  .policy :global(code) { background: var(--cream-2); border-radius: 6px; padding: 1px 6px; font-size: .92em; }
+  .policy :global(table) { width: 100%; border-collapse: separate; border-spacing: 0; margin: 16px 0 20px; font-size: 15px; border: 3px solid var(--ink); border-radius: 16px; overflow: hidden; }
+  .policy :global(th), .policy :global(td) { text-align: left; padding: 10px 14px; vertical-align: top; border-bottom: 2px solid var(--cream-2); }
+  .policy :global(tr:last-child td) { border-bottom: 0; }
+  .policy :global(th) { background: var(--yellow); font: 900 13px/1.2 var(--body); text-transform: uppercase; letter-spacing: .05em; border-bottom: 3px solid var(--ink); }
+  .policy :global(td a) { word-break: break-word; }
+  .policy :global(.note) { background: #fff3c4; border: 3px solid var(--ink); border-radius: 16px; padding: 14px 18px; margin: 18px 0; box-shadow: 0 4px 0 var(--ink); }
+  @media (max-width: 600px) { .policy :global(table) { font-size: 14px; } .policy :global(th), .policy :global(td) { padding: 8px 10px; } }
+</style>

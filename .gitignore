@@ -1,6 +1,8 @@
 .DS_Store
 Thumbs.db
 node_modules/
+dist/
+.astro/
 
 # Vercel CLI: link metadata and the local OIDC token it fetches.
 # .env.local holds VERCEL_OIDC_TOKEN - must never be committed.

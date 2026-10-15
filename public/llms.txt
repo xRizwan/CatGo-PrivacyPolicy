@@ -1,0 +1,68 @@
+# Cat Go!
+
+> Cat Go! is a free Android lane battler. Ginger napped on guard duty. The Golden Tuna was stolen. Switch lanes, stack weapons and beat bosses over 60 chapters.
+
+Cat Go! is a free mobile game for Android by XO Productions (XO Labs). Package: com.xoproductions.catgo.
+
+## Links
+- [Google Play](https://play.google.com/store/apps/details?id=com.xoproductions.catgo)
+- [Website](https://catgo.xoproduction.com/)
+- [Privacy policy](https://catgo.xoproduction.com/privacy-policy)
+- Contact: xo.labs.production@gmail.com
+
+## About
+Cat Go! is a mobile game about a cat on a road with two or three lanes. Every enemy has a number. Knock out a smaller one and its number is added to yours. Run into a bigger one and the run ends.
+It's made by XO Productions, a small independent studio. Cat Go! is free on Google Play and plays offline.
+
+## Story
+Ginger had one job: guard the Golden Tuna. He took a nap. The Ogre King stole it. Help Ginger chase him through six worlds, past lots of goblins and at least one very big snowball. You pick the lane. Ginger does the fighting.
+
+## How it plays
+- You pick the lane: Tap to switch. That's the only control. Ginger runs and throws on his own.
+- Ginger eats their power: Knock an enemy's number down to zero. Ginger takes all its power. Bigger number, bigger cat.
+- Every card stacks: Daggers, crossbow bolts, sword waves, homing orbs, fire. Grab a good card. Leave the poop card.
+- Then the boss: Every chapter ends with a boss. Halfway there you pick one of three power-ups.
+
+## Worlds
+- Whisker Woods (Chapters 1-9): Goblin camps, skeletons and Ogre Keep. The Ogre King has the Tuna. Or he did.
+- Volcano Lands (Chapters 10-19): "Tuna? Oh... I traded it to the Dragon Queen." So it's off across the lava.
+- Dragon Realm (Chapters 20-30): The terrible Dragon Queen is a baby who just wanted a friend.
+- Frostpaw Peaks (Chapters 31-40): The Yeti King keeps the Golden Ice Cream and throws very big snowballs. When a lane glows, move.
+- Desert Dunes (Chapters 41-50): The Sphinx King guards the Golden Cookie. Answer his riddle or meet his Mummy Golem.
+- Sunken Reef (Chapters 51-60): The Crab King pinches everything. His Kraken's currents push Ginger out of his lane.
+
+## Heroes
+Heroes you can play as: Ginger (the original hero), Smokey (starts with a dagger), Midnight (attacks 15% faster), Snowball (+25% coins), Calico (starts with a pet), Bao the red panda (starts with a crossbow), Chef Mochi (+25% power from every kill and card), Captain Whiskers (premium; starts with a sword, +15% power from every kill) and Pip the penguin (premium; starts with a fire wave and a pet).
+
+## Modes
+- Endless: No boss, no finish line. See how big Ginger gets before something bigger shows up.
+- Daily challenge: One new run every day, the same for everyone. Keep your streak going.
+- Leaderboards: Sign in to Google Play Games to put your Endless and daily scores on the leaderboards.
+
+## FAQ
+### What kind of game is Cat Go!?
+Cat Go! is a lane-running battler. Ginger runs by himself on a road with two or three lanes. You tap to switch lanes. Beat enemies with a smaller power number to take their power. Avoid bigger ones.
+
+### What is the story of Cat Go!?
+Ginger fell asleep guarding the legendary Golden Tuna, and the Ogre King stole it. Chase him through six worlds to a Dragon Queen, then more Golden Treats guarded by the Yeti King, the Sphinx King and the Crab King.
+
+### Is Cat Go! free?
+Yes, Cat Go! is free to download and play. Optional ads let you revive or double your coins by watching a video. You can also buy coin packs, premium heroes or a monthly VIP pass.
+
+### Can I play Cat Go! offline?
+Yes, the whole campaign works offline. Ads, purchases and leaderboards need an internet connection.
+
+### Is Cat Go! on iPhone?
+No, Cat Go! is only on Android through Google Play for now.
+
+### How many levels are there?
+There are 60 chapters across six worlds, with a boss at the end of each chapter. Endless mode unlocks after chapter 10. The daily challenge unlocks after chapter 3.
+
+### How do pets evolve?
+Collect three of the same pet to evolve it into a stronger form. Pick up a pet card in a world and the pet joins your run.
+
+### Can I turn off ads?
+Yes, the No Ads purchase or VIP pass removes ads between runs. Rewarded videos stay optional: you only see them if you choose to.
+
+### Who makes Cat Go!?
+XO Productions (XO Labs), a small indie studio, makes it. Email xo.labs.production@gmail.com.
